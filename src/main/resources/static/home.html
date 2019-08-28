@@ -10,13 +10,13 @@
 
  <script>
    function update(id){
-     console.log("Id ");
+     console.log("Id");
      console.log(id);
 
    }
 var app = angular.module('booksInventoryApp', []);
 
-app.controller('booksCtrl', function($scope, $http, $routeProvider) {
+app.controller('booksCtrl', function($scope, $http, $window) {
 
 
   $http.get("http://localhost:2021/getEmps")
@@ -24,9 +24,16 @@ app.controller('booksCtrl', function($scope, $http, $routeProvider) {
       $scope.data = response.data;
       console.log($scope.data)
     });
+  
 
-   $scope.update=function(idPassedFromNgClick){
-    console.log(idPassedFromNgClick);
+   $scope.update=function(userId){
+   $scope.userId = {'id': userId}
+     $http.post("http://localhost:2021/delete",$scope.userId )
+    .then(function(response) {
+      $scope.data = response.data;
+      console.log($scope.data)
+$window.location.reload();
+    });
    }
 
 
@@ -46,7 +53,7 @@ app.controller('booksCtrl', function($scope, $http, $routeProvider) {
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>UID</th>
+        <th>Id</th>
         <th> First Name</th>
         <th>Last Name</th>
         <th>Email</th>
@@ -57,12 +64,13 @@ app.controller('booksCtrl', function($scope, $http, $routeProvider) {
     </thead>
     <tbody>
       <tr ng-repeat="book in data">
-         <td> {{book.uuid}} </td>
+         <td> {{book.id}} </td>
          <td> {{book.fname}} </td>
          <td> {{book.sname}} </td>
          <td> {{book.email}} </td>
          <td> {{book.image}} </td>
-         <td> <button class="btn btn-info" data="{{book.uuid}}" ng-click ="update(book.uuid)">Edit</button> </td>
+         <td> <button class="btn btn-info" data="{{book.uuid}}" ng-click ="update(book.id)">Edit</button> </td>
+         <td> <button class="btn btn-info" data="{{book.uuid}}" ng-click ="update(book.id)">Delete</button> </td>
          
       </tr>
     </tbody>

@@ -7,7 +7,7 @@ public class User {
 			String city, String state, String postcode, String username, String password, String dob,
 			String registeredAt, String phone, String cell, String image, String nat) {
 		super();
-		this.uuid = id;
+		this.id = id;
 		this.uuid = uuid;
 		this.titile = titile;
 		this.fname = fname;
