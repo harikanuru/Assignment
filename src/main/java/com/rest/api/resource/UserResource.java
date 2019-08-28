@@ -30,18 +30,18 @@ public class UserResource {
 	}
 
 	@RequestMapping(value="/register", method = RequestMethod.POST)
-	public @ResponseBody User registerUser(@RequestBody User user) {
+	public @ResponseBody String registerUser(@RequestBody User user) {
 		
-		user.registerUser(user);
 		
-		return null;
+		
+		return userService.registerUser(user);
 	}
 	
 	@RequestMapping(value="/delete", method = RequestMethod.POST)
-	public @ResponseBody User registerUser(@RequestBody User user) {
+	public @ResponseBody String deleteUser(@RequestBody User user) {
 		
-		user.deleteUser(user.getId());
-		return null;
+		
+		return userService.deleteUser(user.getId());
 	}
 
 }

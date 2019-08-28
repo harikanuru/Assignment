@@ -10,9 +10,9 @@ public interface IUserInterface {
 	
 	List<User> getUsers();
 	
-	User registerUser(User user);
+	String registerUser(User user);
 	
-	User deleteUser(int id);
+	String deleteUser(int id);
 
 	
 

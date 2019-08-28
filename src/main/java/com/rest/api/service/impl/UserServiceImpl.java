@@ -27,19 +27,30 @@ public class UserServiceImpl implements IUserInterface{
 
 
 	@Override
-	public User registerUser(User user) {
+	public String registerUser(User user) {
+		
+		String status = "";
+		try {
 	        jdbcTemplate.update(DBQueries.REGISTER, new Object[] { user.getTitile(), user.getFname(), user.getSname(), user.getEmail(),user.getGender(), user.getStreet(), user.getCity(), user.getState(), user.getPostcode(), user.getUsername(), user.getPassword(), user.getDob(), user.getRegisteredAt(), user.getPhone(), user.getCell(),user.getImage(), user.getNat()});
-	    		   
-	    		   System.out.println("");
+	        status = "Registration done Successfully";
+		}catch(Exception e) {
+			status = "Registration not Successfully";
+		}   
 	       
-		return null;
+		return status;
 	}
 
 
 	@Override
-	public User deleteUser(int id) {
-        jdbcTemplate.update(DBQueries.DELETE, new Object[] { id});
-		return null;
+	public String deleteUser(int id) {
+		String status = "";
+		try {
+			jdbcTemplate.update(DBQueries.DELETE, new Object[] { id});
+			status = "User deleted Successfully";
+    	}catch(Exception e) {
+    		status = "User deleted not Successfully";
+    	}
+		return status;
 	}
 
 }
