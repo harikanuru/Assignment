@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<link href="css/style.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script>
+  var app = angular.module('userApp', []);
+
+  app.controller('booksCtrl', function($scope, $http, $window) {
+
+
+  });
+</script>
+</head>
+<body ng-app="userApp">
+<div class="col-md-6">
+  <h2 class="text-center">Edit User</h2>
+  <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+<div class="form-group">
+    <label for="UserId">User:</label>
+    <input formControlName="UserId" placeholder="User Id" name="CategoryId" class="form-control" id="UserId">
+  </div>
+    <div class="form-group">
+      <label for="FirstName">First Name:</label>
+      <input formControlName="FirstName" placeholder="First Name" name="FirstName" class="form-control" id="FirstName">
+    </div>
+    <div class="form-group">
+        <label for="LastName">Last Name:</label>
+        <input formControlName="LastName" placeholder="Last Name" name="LastName" class="form-control" id="LastName">
+      </div>
+    
+   
+
+
+    <div class="form-group">
+      <label for="Email">Email:</label>
+      <input formControlName="Email" placeholder="Email" name="Email" class="form-control" id="Email">
+    </div>
+
+    <div class="form-group">
+      <label for="Address">Address:</label>
+      <input formControlName="Address" placeholder="Address" name="Address" class="form-control" id="Address">
+    </div>
+
+    
+    <button class="btn btn-info">Update</button>
+  </form>
+</div>
+</body>
+</div>
+</html>
