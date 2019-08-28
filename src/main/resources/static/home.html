@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
+
+ <script>
+   function update(id){
+     console.log("Id ");
+     console.log(id);
+
+   }
+var app = angular.module('booksInventoryApp', []);
+
+app.controller('booksCtrl', function($scope, $http, $routeProvider) {
+
+
+  $http.get("http://localhost:2021/getEmps")
+    .then(function(response) {
+      $scope.data = response.data;
+      console.log($scope.data)
+    });
+
+   $scope.update=function(idPassedFromNgClick){
+    console.log(idPassedFromNgClick);
+   }
+
+
+
+});
+
+ </script>
+    </head>
+<body ng-app="booksInventoryApp" >
+<div ng-controller="booksCtrl" class="col-md-10">
+  <h2 class="text-center"> Users List </h2>
+  <div class="col-md-7">
+    <button class="btn btn-info" onclick =" "> Add user</button> </div>
+
+<div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>UID</th>
+        <th> First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Profile Link</th>
+     
+      </tr>
+     
+    </thead>
+    <tbody>
+      <tr ng-repeat="book in data">
+         <td> {{book.uuid}} </td>
+         <td> {{book.fname}} </td>
+         <td> {{book.sname}} </td>
+         <td> {{book.email}} </td>
+         <td> {{book.image}} </td>
+         <td> <button class="btn btn-info" data="{{book.uuid}}" ng-click ="update(book.uuid)">Edit</button> </td>
+         
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  </div>
+
+  </body>
+</html>
