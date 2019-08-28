@@ -2,6 +2,8 @@ package com.rest.api.service.impl;
 
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.rest.api.Constants.DBQueries;
 import com.rest.api.bo.User;
+import com.rest.api.resource.UserResource;
 import com.rest.api.service.IUserInterface;
 
 @Service
@@ -17,7 +20,8 @@ public class UserServiceImpl implements IUserInterface{
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 	
-	
+	 private static final Logger LOGGER = (Logger) LogManager.getLogger(UserServiceImpl.class);
+
 	@Override
 	public List<User> getUsers() {
          System.out.println("JDbc Template "+ jdbcTemplate);
@@ -25,7 +29,13 @@ public class UserServiceImpl implements IUserInterface{
 		return users;
 	}
 
-
+	@Override
+	public User getUser(int id) {
+        User user =  (User) jdbcTemplate.queryForObject(DBQueries.GET_USER, new Object[]{ id }, new BeanPropertyRowMapper(User.class));
+		return user;
+	}
+	
+	
 	@Override
 	public String registerUser(User user) {
 		
@@ -52,5 +62,8 @@ public class UserServiceImpl implements IUserInterface{
     	}
 		return status;
 	}
+
+
+	
 
 }

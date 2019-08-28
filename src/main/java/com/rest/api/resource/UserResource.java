@@ -17,29 +17,33 @@ import com.rest.api.service.IUserInterface;
 
 public class UserResource {
 
-	 private static final Logger LOGGER = (Logger) LogManager.getLogger(EmployeeResource.class);
+	 private static final Logger LOGGER = (Logger) LogManager.getLogger(UserResource.class);
 	 
 	 @Autowired
 	 IUserInterface userService;
 	 
 	 
-	@RequestMapping(value="/getEmps", method = RequestMethod.GET)
-	public @ResponseBody List<User> getWelcome() {
-		
+	@RequestMapping(value="/getUsers", method = RequestMethod.GET)
+	public @ResponseBody List<User> getUsers() {
+		LOGGER.debug("START :: UserResource :: getUsers");
 		return userService.getUsers();
+	}
+	
+	@RequestMapping(value="/getUser", method = RequestMethod.POST)
+	public @ResponseBody User getUsers(@RequestBody User user) {
+		LOGGER.debug("START :: UserResource :: getUsers");
+		return userService.getUser(user.getId());
 	}
 
 	@RequestMapping(value="/register", method = RequestMethod.POST)
 	public @ResponseBody String registerUser(@RequestBody User user) {
-		
-		
-		
+		LOGGER.debug("START :: UserResource :: registerUser");		
 		return userService.registerUser(user);
 	}
 	
 	@RequestMapping(value="/delete", method = RequestMethod.POST)
 	public @ResponseBody String deleteUser(@RequestBody User user) {
-		
+		LOGGER.debug("START :: UserResource :: deleteUser");	
 		
 		return userService.deleteUser(user.getId());
 	}

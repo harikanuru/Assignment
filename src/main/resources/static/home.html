@@ -19,20 +19,25 @@ var app = angular.module('userApp', []);
 app.controller('userCtrl', function($scope, $http, $window) {
 
 
-  $http.get("http://localhost:2021/getEmps")
+  $http.get("http://localhost:2021/getUsers")
     .then(function(response) {
       $scope.data = response.data;
       console.log($scope.data)
+
     });
   
-
    $scope.update=function(userId){
+       window.location.href = "http://localhost:2021/update.html?id="+userId;
+
+   }
+
+   $scope.delete=function(userId){
    $scope.userId = {'id': userId}
      $http.post("http://localhost:2021/delete",$scope.userId )
     .then(function(response) {
       $scope.data = response.data;
       console.log($scope.data)
-$window.location.reload();
+      $window.location.reload();
     });
    }
 
@@ -71,7 +76,7 @@ $window.location.reload();
          <td> {{book.email}} </td>
          <td> <a href = {{book.image}}>Photo</a> </td>
          <td> <button class="btn btn-info" data="{{book.uuid}}" ng-click ="update(book.id)">Edit</button> </td>
-         <td> <button class="btn btn-info" data="{{book.uuid}}" ng-click ="update(book.id)">Delete</button> </td>
+         <td> <button class="btn btn-info" data="{{book.uuid}}" ng-click ="delete(book.id)">Delete</button> </td>
          
       </tr>
     </tbody>
