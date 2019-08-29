@@ -17,8 +17,8 @@
 
 
 
-   $scope.login = function(){
-   var user = {"titile":$scope.titile,"fname":$scope.fname,"sname":"Krishna","email":"hari@gmail.com","gender":"male","street":"main road","city":"vijayawada","state":"andhra","postcode":"520007","username":"hari.kanuru","password":"pwd","dob":"29-03-1991","registeredAt":"29-03-1991","phone":"8106293262","cell":"8106293262","image":"","nat":"IN"};
+   $scope.register = function(){
+   var user = {"titile":$scope.titile,"fname":$scope.fname,"sname":$scope.sname,"email":$scope.email,"gender":$scope.gender,"street":$scope.street,"city":$scope.city,"state":$scope.state,"postcode":$scope.postcode,"username":$scope.username,"password":$scope.password,"phone":$scope.phone,"cell":$scope.cell,"nat":"IN"};
 
       $http.post("http://localhost:2021/register",user )
     .then(function(response) {
@@ -35,7 +35,11 @@
 <body ng-app="userApp" ng-controller="registerCtrl">
 <div class="col-md-6">
   <h2 class="text-center">Sign Up</h2>
-  <form [formGroup]="editForm" ng-submit="login()">
+
+    <div class="alert alert-success">
+    <strong>Registration Success!</strong> .
+  </div>
+  <form [formGroup]="editForm" ng-submit="register()">
    
     <div class="form-group">
       <select ng-model="title" placeholder="Title" ng-options="x for x in names"></select>
@@ -58,7 +62,7 @@
     </div>
 
     <div class="form-group">
-      <input  ng-model="password" formControlName="Password" placeholder="Password" name="Password" class="form-control" id="Email">
+      <input  ng-model="password" type="password" formControlName="Password" placeholder="Password" name="Password" class="form-control" id="Email">
     </div>
 
     <div class="form-group">
