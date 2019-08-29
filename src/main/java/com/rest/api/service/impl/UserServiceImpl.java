@@ -24,7 +24,6 @@ public class UserServiceImpl implements IUserInterface{
 
 	@Override
 	public List<User> getUsers() {
-         System.out.println("JDbc Template "+ jdbcTemplate);
          List<User> users = jdbcTemplate.query(DBQueries.GET_USERS, new BeanPropertyRowMapper(User.class));
 		return users;
 	}
@@ -60,6 +59,22 @@ public class UserServiceImpl implements IUserInterface{
     	}catch(Exception e) {
     		status = "User deleted not Successfully";
     	}
+		return status;
+	}
+
+	@Override
+	public String updateUser(User user) {
+
+		
+		String status = "";
+		try {
+	        jdbcTemplate.update(DBQueries.UPDATE, new Object[] { user.getFname(), user.getSname(), user.getEmail(),  user.getPhone(), user.getCell(), user.getStreet(), user.getCity(), user.getState(), user.getPostcode(), user.getId()});
+	        status = "Updated Successfully";
+		}catch(Exception e) {
+			status = "Updated Successfully";
+		}   
+		
+		
 		return status;
 	}
 

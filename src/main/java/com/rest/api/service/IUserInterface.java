@@ -15,6 +15,8 @@ public interface IUserInterface {
 	String registerUser(User user);
 	
 	String deleteUser(int id);
+	
+	String updateUser(User user);
 
 	
 

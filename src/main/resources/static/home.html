@@ -27,6 +27,7 @@ app.controller('userCtrl', function($scope, $http, $window) {
     });
   
    $scope.update=function(userId){
+     console.log(" Id " + userId )
        window.location.href = "http://localhost:2021/update.html?id="+userId;
 
    }
@@ -69,15 +70,15 @@ app.controller('userCtrl', function($scope, $http, $window) {
      
     </thead>
     <tbody>
-      <tr ng-repeat="book in data">
-         <td> {{book.id}} </td>
-         <td> {{book.fname}} </td>
-         <td> {{book.sname}} </td>
-         <td> {{book.email}} </td>
+      <tr ng-repeat="user in data">
+         <td> {{user.id}} </td>
+         <td> {{user.fname}} </td>
+         <td> {{user.sname}} </td>
+         <td> {{user.email}} </td>
          <td> <a href = {{book.image}}>Photo</a> </td>
-         <td> <button class="btn btn-info" data="{{book.uuid}}" ng-click ="update(book.id)">Edit</button> </td>
-         <td> <button class="btn btn-info" data="{{book.uuid}}" ng-click ="delete(book.id)">Delete</button> </td>
-         
+         <td> <button class="btn btn-info" data="{{user.id}}" ng-click ="update(user.id)">Edit</button> </td>
+         <td> <button class="btn btn-info" data="{{user.id}}" ng-click ="delete(user.id)">Delete</button> </td>
+        
       </tr>
     </tbody>
   </table>

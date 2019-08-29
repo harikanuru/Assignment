@@ -41,6 +41,12 @@ public class UserResource {
 		return userService.registerUser(user);
 	}
 	
+	@RequestMapping(value="/update", method = RequestMethod.POST)
+	public @ResponseBody String updateUser(@RequestBody User user) {
+		LOGGER.debug("START :: UserResource :: updateUser");		
+		return userService.updateUser(user);
+	}
+	
 	@RequestMapping(value="/delete", method = RequestMethod.POST)
 	public @ResponseBody String deleteUser(@RequestBody User user) {
 		LOGGER.debug("START :: UserResource :: deleteUser");	

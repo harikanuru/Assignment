@@ -12,20 +12,21 @@
   var app = angular.module('userApp', []);
 var url_string = window.location.href
 var url = new URL(url_string);
-var c = url.searchParams.get("id");
-console.log(c);
+var id = url.searchParams.get("id");
+console.log(id);
 
 
   app.controller('updateCtrl', function($scope,  $http,  $location) {
-  $scope.names = ["Mr", "Mrs", "Miss"];
-  $scope.genders = ["Male", "Female", "Others"];
 
+  var user = {"id":id}
+     $http.post("http://localhost:2021/getUser",user )
+    .then(function(response) {
+      $scope.data = response.data;
+      console.log($scope.data);
+    });
 
-
-   $scope.login = function(){
-   var user = {"titile":$scope.titile,"fname":$scope.fname,"sname":"Krishna","email":"hari@gmail.com","gender":"male","street":"main road","city":"vijayawada","state":"andhra","postcode":"520007","username":"hari.kanuru","password":"pwd","dob":"29-03-1991","registeredAt":"29-03-1991","phone":"8106293262","cell":"8106293262","image":"","nat":"IN"};
-
-      $http.post("http://localhost:2021/register",user )
+   $scope.update = function(){
+   $http.post("http://localhost:2021/update",$scope.data )
     .then(function(response) {
       $scope.data = response.data;
       console.log($scope.data);
@@ -40,59 +41,48 @@ console.log(c);
 <body ng-app="userApp" ng-controller="updateCtrl">
 <div class="col-md-6">
   <h2 class="text-center">Edit User</h2>
-  <form [formGroup]="editForm" ng-submit="login()">
+  <form >
    
+  
     <div class="form-group">
-      <select ng-model="title" placeholder="Title" ng-options="x for x in names"></select>
+      <input ng-model="data.fname" formControlName="FirstName" placeholder="First Name" name="FirstName" class="form-control" id="FirstName">
     </div>
 
     <div class="form-group">
-      <input ng-model="fname" formControlName="FirstName" placeholder="First Name" name="FirstName" class="form-control" id="FirstName">
+        <input ng-model="data.sname" formControlName="LastName" placeholder="Last Name" name="LastName" class="form-control" id="LastName">
     </div>
 
     <div class="form-group">
-        <input ng-model="sname" formControlName="LastName" placeholder="Last Name" name="LastName" class="form-control" id="LastName">
-    </div>
-
-    <div class="form-group">
-      <input  ng-model="email" formControlName="Email" placeholder="Email" name="Email" class="form-control" id="Email">
+      <input  ng-model="data.email" formControlName="Email" placeholder="Email" name="Email" class="form-control" id="Email" >
     </div>
 
      <div class="form-group">
-      <input  ng-model="username" formControlName="username" placeholder="Username" name="Username" class="form-control" id="Email">
+      <input  ng-model="data.username" formControlName="username" placeholder="Username" name="Username" class="form-control" id="Email" disabled>
     </div>
 
     <div class="form-group">
-      <input  ng-model="password" formControlName="Password" placeholder="Password" name="Password" class="form-control" id="Email">
+      <input  ng-model="data.phone" formControlName="phone" placeholder="phone" name="phone" class="form-control" id="phone" >
     </div>
 
     <div class="form-group">
-      <select ng-model="gender" placeholder="Gender" ng-options="x for x in genders"></select>
-    </div>
-
-    <div class="form-group">
-      <input  ng-model="phone" formControlName="phone" placeholder="phone" name="phone" class="form-control" id="phone">
-    </div>
-
-    <div class="form-group">
-      <input  ng-model="cell" formControlName="cell" placeholder="Cell" name="Cell" class="form-control" id="Cell">
+      <input  ng-model="data.cell" formControlName="cell" placeholder="Cell" name="Cell" class="form-control" id="Cell" >
     </div>
    
     <div class="form-group">
-      <input  ng-model="street" formControlName="Street" placeholder="Address" name="Address" class="form-control" id="Address">
+      <input  ng-model="data.street" formControlName="Street" placeholder="Address" name="Address" class="form-control" id="Address">
     </div>
 
       <div class="form-group">
-      <input  ng-model="city" formControlName="city" placeholder="City" name="city" class="form-control" id="city">
+      <input  ng-model="data.city" formControlName="city" placeholder="City" name="city" class="form-control" id="city">
     </div>
       <div class="form-group">
-      <input  ng-model="state" formControlName="state" placeholder="state" name="state" class="form-control" id="state">
+      <input  ng-model="data.state" formControlName="state" placeholder="state" name="state" class="form-control" id="state">
     </div>
       <div class="form-group">
-      <input  ng-model="postcode" formControlName="postcode" placeholder="postcode" name="postcode" class="form-control" id="postcode">
+      <input  ng-model="data.postcode" formControlName="postcode" placeholder="postcode" name="postcode" class="form-control" id="postcode">
     </div>
-    
-    <button class="btn btn-info">Update</button>
+    <td> <button class="btn btn-info" data="{{user.id}}" ng-click ="update()">Update</button> </td>
+
   </form>
 </div>
 </body>
