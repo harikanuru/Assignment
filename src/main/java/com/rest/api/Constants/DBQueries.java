@@ -6,7 +6,7 @@ public class DBQueries {
 	
 	public static final String GET_USER = "SELECT * FROM PERSON WHERE ID = ?";
 
-	public static final String REGISTER = "INSERT INTO emp.person(`titile`,`fname`,`sname`,`email`,`gender`,`street`,`city`,`state`,`postcode`,`username`,`password`,`dob`,`registeredAt`,`phone`,`cell`,`image`,`nat`) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	public static final String REGISTER = "INSERT INTO emp.person(`titile`,`fname`,`sname`,`email`,`gender`,`street`,`city`,`state`,`postcode`,`username`,`password`,`dob`,`registeredAt`,`phone`,`cell`,`nat`) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
 	public static final String DELETE = "DELETE FROM PERSON WHERE ID = ?";
 	

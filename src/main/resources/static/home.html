@@ -74,7 +74,7 @@ app.controller('userCtrl', function($scope, $http, $window) {
          <td> {{user.fname}} </td>
          <td> {{user.sname}} </td>
          <td> {{user.email}} </td>
-         <td> <a href = {{book.image}}>Photo</a> </td>
+         <td> <a href = {{user.image}}>Photo</a> </td>
          <td> <button class="btn btn-info" data="{{user.id}}" ng-click ="update(user.id)">Edit</button> </td>
          <td> <button class="btn btn-info" data="{{user.id}}" ng-click ="delete(user.id)">Delete</button> </td>
         

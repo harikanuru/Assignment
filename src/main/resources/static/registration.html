@@ -24,6 +24,8 @@
     .then(function(response) {
       $scope.data = response.data;
       console.log($scope.data);
+      document.getElementById("status").style.display= "block";
+
     });
 };
 
@@ -36,8 +38,8 @@
 <div class="col-md-6">
   <h2 class="text-center">Sign Up</h2>
 
-    <div class="alert alert-success">
-    <strong>Registration Success!</strong> .
+    <div id = "status" class="alert alert-success" style="display: none;">
+    <strong >Registration Success!</strong> .
   </div>
   <form [formGroup]="editForm" ng-submit="register()">
    
@@ -91,7 +93,7 @@
       <input  ng-model="postcode" formControlName="postcode" placeholder="postcode" name="postcode" class="form-control" id="postcode">
     </div>
     
-    <button class="btn btn-info">Update</button>
+    <button class="btn btn-info">Sign Up</button>
   </form>
 </div>
 </body>
