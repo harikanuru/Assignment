@@ -63,7 +63,7 @@ $scope.edit = function(){
 
       setTimeout(function(){
         document.getElementById("status").style.display= "none";
-        window.location.reload();
+        location.replace("http://localhost:2021/home.html");
 
       }, 3000);
 
@@ -90,7 +90,7 @@ img {
 
   <form >
    
-  <center> <img src="https://randomuser.me/api/portraits/men/92.jpg" alt="Avatar" style="width:100px" ></center></center>
+  <center> <img src="images/logo.jpeg" alt="Avatar" style="width:200px" ></center></center>
 
     <div class="form-group">
       <input id = "fname" ng-model="data.fname" formControlName="FirstName" placeholder="First Name" name="FirstName" class="form-control" id="FirstName" disabled>
