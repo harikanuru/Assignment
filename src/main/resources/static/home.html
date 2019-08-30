@@ -83,7 +83,6 @@ app.controller('userCtrl', function($scope, $http, $window) {
          <td> {{user.fname}} </td>
          <td> {{user.sname}} </td>
          <td> {{user.email}} </td>
-          <td><img src="images/logo.jpeg" alt="Avatar" style="width:100px" ></td>
          <td> <button class="btn btn-info" data="{{user.id}}" ng-click ="update(user.id)">View</button> </td>
          <td> <button class="btn btn-info" data="{{user.id}}" ng-click ="delete(user.id)">Delete</button> </td>
         
