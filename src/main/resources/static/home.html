@@ -37,7 +37,13 @@ app.controller('userCtrl', function($scope, $http, $window) {
     .then(function(response) {
       $scope.data = response.data;
       console.log($scope.data)
-      $window.location.reload();
+      document.getElementById("status").style.display= "block";
+
+      setTimeout(function(){
+        document.getElementById("status").style.display= "none";
+        $window.location.reload();
+
+      }, 2000);
     });
    }
 
@@ -54,6 +60,9 @@ app.controller('userCtrl', function($scope, $http, $window) {
     <a href="/registration.html"><button class="btn btn-info" onclick =" "> Add user</button></a> 
   </div>
 
+<div id = "status" class="alert alert-success" style="display: none;">
+    <strong >Deleted Success!</strong> .
+  </div>
 <div>
 
   <table class="table table-striped">
@@ -75,7 +84,7 @@ app.controller('userCtrl', function($scope, $http, $window) {
          <td> {{user.sname}} </td>
          <td> {{user.email}} </td>
          <td> <a href = {{user.image}}>Photo</a> </td>
-         <td> <button class="btn btn-info" data="{{user.id}}" ng-click ="update(user.id)">Edit</button> </td>
+         <td> <button class="btn btn-info" data="{{user.id}}" ng-click ="update(user.id)">View</button> </td>
          <td> <button class="btn btn-info" data="{{user.id}}" ng-click ="delete(user.id)">Delete</button> </td>
         
       </tr>

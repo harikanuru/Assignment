@@ -25,11 +25,48 @@ console.log(id);
       console.log($scope.data);
     });
 
+$scope.edit = function(){
+        document.getElementById("save").style.display= "block";
+        document.getElementById("update").style.display= "none";
+
+        document.getElementById("fname").disabled = false;
+        document.getElementById("sname").disabled = false;
+        document.getElementById("email").disabled = false;
+        document.getElementById("phone").disabled = false;
+        document.getElementById("cell").disabled = false;
+        document.getElementById("street").disabled = false;
+        document.getElementById("city").disabled = false;
+        document.getElementById("state").disabled = false;
+        document.getElementById("passcode").disabled = false;
+};
+
    $scope.update = function(){
+
+        document.getElementById("save").style.display= "none";
+        document.getElementById("update").style.display= "block";
+
+        document.getElementById("fname").disabled = true;
+        document.getElementById("sname").disabled = true;
+        document.getElementById("email").disabled = true;
+        document.getElementById("phone").disabled = true;
+        document.getElementById("cell").disabled = true;
+        document.getElementById("street").disabled = true;
+        document.getElementById("city").disabled = true;
+        document.getElementById("state").disabled = true;
+        document.getElementById("passcode").disabled = true;
+
+
    $http.post("http://localhost:2021/update",$scope.data )
     .then(function(response) {
       $scope.data = response.data;
-      console.log($scope.data);
+      document.getElementById("status").style.display= "block";
+
+      setTimeout(function(){
+        document.getElementById("status").style.display= "none";
+        window.location.reload();
+
+      }, 3000);
+
     });
 };
 
@@ -37,51 +74,64 @@ console.log(id);
 
 
 </script>
+<style>
+img {
+  border-radius: 50%;
+}
+</style>
 </head>
 <body ng-app="userApp" ng-controller="updateCtrl">
 <div class="col-md-6">
   <h2 class="text-center">Edit User</h2>
+  
+  <div id = "status" class="alert alert-success" style="display: none;">
+    <strong >User Edit it  Success!</strong> .
+  </div>
+
   <form >
    
-  
+  <center> <img src="https://randomuser.me/api/portraits/men/92.jpg" alt="Avatar" style="width:100px" ></center></center>
+
     <div class="form-group">
-      <input ng-model="data.fname" formControlName="FirstName" placeholder="First Name" name="FirstName" class="form-control" id="FirstName">
+      <input id = "fname" ng-model="data.fname" formControlName="FirstName" placeholder="First Name" name="FirstName" class="form-control" id="FirstName" disabled>
     </div>
 
     <div class="form-group">
-        <input ng-model="data.sname" formControlName="LastName" placeholder="Last Name" name="LastName" class="form-control" id="LastName">
+        <input id = "sname" ng-model="data.sname" formControlName="LastName" placeholder="Last Name" name="LastName" class="form-control" id="LastName" disabled>
     </div>
 
     <div class="form-group">
-      <input  ng-model="data.email" formControlName="Email" placeholder="Email" name="Email" class="form-control" id="Email" >
+      <input  id = "email" ng-model="data.email" formControlName="Email" placeholder="Email" name="Email" class="form-control" id="Email" disabled>
     </div>
 
      <div class="form-group">
-      <input  ng-model="data.username" formControlName="username" placeholder="Username" name="Username" class="form-control" id="Email" disabled>
+      <input  id = "username" ng-model="data.username" formControlName="username" placeholder="Username" name="Username" class="form-control" id="Email" disabled>
     </div>
 
     <div class="form-group">
-      <input  ng-model="data.phone" formControlName="phone" placeholder="phone" name="phone" class="form-control" id="phone" >
+      <input  id = "phone" ng-model="data.phone" formControlName="phone" placeholder="phone" name="phone" class="form-control" id="phone" disabled>
     </div>
 
     <div class="form-group">
-      <input  ng-model="data.cell" formControlName="cell" placeholder="Cell" name="Cell" class="form-control" id="Cell" >
+      <input  id = "cell" ng-model="data.cell" formControlName="cell" placeholder="Cell" name="Cell" class="form-control" id="Cell" disabled>
     </div>
    
     <div class="form-group">
-      <input  ng-model="data.street" formControlName="Street" placeholder="Address" name="Address" class="form-control" id="Address">
+      <input  id = "street" ng-model="data.street" formControlName="Street" placeholder="Address" name="Address" class="form-control" id="Address" disabled>
     </div>
 
       <div class="form-group">
-      <input  ng-model="data.city" formControlName="city" placeholder="City" name="city" class="form-control" id="city">
+      <input  id = "city" ng-model="data.city" formControlName="city" placeholder="City" name="city" class="form-control" id="city" disabled>
     </div>
       <div class="form-group">
-      <input  ng-model="data.state" formControlName="state" placeholder="state" name="state" class="form-control" id="state">
+      <input  id = "state" ng-model="data.state" formControlName="state" placeholder="state" name="state" class="form-control" id="state" disabled>
     </div>
       <div class="form-group">
-      <input  ng-model="data.postcode" formControlName="postcode" placeholder="postcode" name="postcode" class="form-control" id="postcode">
+      <input  id = "passcode" ng-model="data.postcode" formControlName="postcode" placeholder="postcode" name="postcode" class="form-control" id="postcode" disabled>
     </div>
-    <td> <button class="btn btn-info" data="{{user.id}}" ng-click ="update()">Update</button> </td>
+    <td> 
+      <button id = "update" class="btn btn-info" data="{{user.id}}" ng-click ="edit()">Edit</button> 
+      <button id = "save" class="btn btn-info" data="{{user.id}}" ng-click ="update()" style="display: none;">Save</button> </td>
 
   </form>
 </div>

@@ -22,10 +22,15 @@
 
       $http.post("http://localhost:2021/register",user )
     .then(function(response) {
+
       $scope.data = response.data;
       console.log($scope.data);
+
       document.getElementById("status").style.display= "block";
 
+      setTimeout(function(){
+        document.getElementById("status").style.display= "none";
+      }, 2000);
     });
 };
 
